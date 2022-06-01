@@ -17,6 +17,27 @@ function isNameValid() {
     }
 }
 
+function displayErrorBirthDate(){
+    let birthDate = document.getElementById('exampleInputBirthDate1').value;
+    let dob = new Date(birthDate);
+    let currentDate = new Date();
+    if(!birthDate){
+        document.getElementById('BirthDateHelp').innerHTML= 'Please enter your birth date!';
+        document.getElementById('exampleInputBirthDate1').style.border = '1px solid tomato';
+        return false;
+    }
+    else if(dob>currentDate){
+        document.getElementById('BirthDateHelp').innerHTML= 'Birthdate cannot be a future date!';
+        document.getElementById('exampleInputBirthDate1').style.border = '1px solid tomato';
+        return false;
+    }
+    else{
+        document.getElementById('BirthDateHelp').innerHTML = '';
+        document.getElementById('exampleInputBirthDate1').style.border = '1px solid white';
+        return true;
+    }
+}
+
 function isEmailValid() {
     var email = document.getElementById('exampleInputEmail1').value;
     if (isValidationEmail(email)) {
@@ -99,15 +120,17 @@ function allValid() {
     var email = document.getElementById('exampleInputEmail1').value;
     var address = document.getElementById('exampleFormControlTextarea1').value;
     var ph_num = document.getElementById('exampleInputPhNumber').value;
-    if (isGenderEntered() && isNameValid() && isEmailValid() && isAddresValid() && isPhoneValid()) {
+    var dob = document.getElementById('exampleInputBirthDate1').value;
+    if (isGenderEntered() && isNameValid() && isEmailValid() && isAddresValid() && isPhoneValid() && displayErrorBirthDate()) {
         if (array.length > 0) {
 
             if(checkEmailDub(email) !== undefined || checkMobileDub(ph_num) !== undefined){
                 document.getElementById('registerHelp').innerHTML = 'User already exists!';
             }else{
                 document.getElementById('registerHelp').innerHTML = '';
-                array.push({ name: uname, email: email, address: address, mobile: ph_num, gender: gender });
+                array.push({ name: uname, email: email, address: address, mobile: ph_num, gender: gender, Birthdate:dob });
                 displayTable();
+                return true;
             }
 
             // for (i = 0; i < array.length; i++) {
@@ -127,13 +150,14 @@ function allValid() {
             // }
         }
         else {
-            array.push({ name: uname, email: email, address: address, mobile: ph_num, gender: gender });
+            array.push({ name: uname, email: email, address: address, mobile: ph_num, gender: gender, Birthdate:dob });
             displayTable();
             return true;
         }
     }
     else {
         isNameValid();
+        displayErrorBirthDate()
         isEmailValid();
         isAddresValid();
         isPhoneValid();
@@ -159,6 +183,7 @@ function displayTable() {
         strHTML += `<tr>`;
         strHTML += `<td>${index + 1}</td>`;
         strHTML += `<td>${element.name}</td>`;
+        strHTML += `<td>${element.Birthdate}</td>`;
         strHTML += `<td>${element.email}</td>`;
         strHTML += `<td>${element.address}</td>`;
         strHTML += `<td>${element.mobile}</td>`;
