@@ -33,7 +33,7 @@ input, textarea{
 }
 
 #cf2{
-    padding: 5vw 25vw;
+    padding: 5vw 22vw;
 }
 table, tr, th, td{
     border: 1px solid white;
@@ -41,7 +41,7 @@ table, tr, th, td{
     padding: 0.5vw;
 }
 table{
-    width: 50vw;
+    width: 60vw;
 }
 th{
     text-align: center;

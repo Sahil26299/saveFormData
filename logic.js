@@ -3,7 +3,7 @@ function isNameValid() {
     var uname = document.getElementById('exampleInputName1').value;
     var num = /[0-9]/g;
     var spl_char = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\,\/\\\?\[\]\:\;\'\"\|\~\`\_\-]/g;
-    if (uname.length < 3 || uname.match(num) || uname.match(spl_char)) {
+    if (uname.length <= 1 || uname.match(num) || uname.match(spl_char)) {
         document.getElementById('NameHelp').style.color = 'tomato';
         document.getElementById('NameHelp').innerHTML = 'Please enter a valid name!';
         document.getElementById('exampleInputName1').style.border = '2px solid tomato';
